@@ -36,7 +36,8 @@
   .highlight-red{ color:var(--red); font-weight:800; }
 
   /* Botones */
-  .btn{ color:#fff; border:none; padding:.75rem 1.2rem; border-radius:10px; cursor:pointer; font-weight:800;
+  /* Aumentado padding vertical (1rem arriba/abajo) */
+  .btn{ color:#fff; border:none; padding: 1rem 1.2rem; border-radius:10px; cursor:pointer; font-weight:800;
         transition:transform .08s ease, box-shadow .2s ease, background-color .25s ease; 
         display:inline-flex; align-items:center; justify-content:center; font-size: 1rem;
         flex-shrink: 0; width: auto; 
@@ -52,15 +53,11 @@
     display: flex; 
     gap: 1rem; 
     justify-content: center; 
-    margin-top: 1.5rem; 
+    margin-top: 1rem; /* Menos espacio por defecto (móvil) */
     padding: 0 1rem; 
     width: 100%; 
   }
-  /* Flex: 1 hace que ocupen el mismo espacio */
-  .classification-buttons .btn { 
-    flex: 1; 
-    max-width: 250px; /* Tope máximo para que no sean gigantes en PC */
-  }
+  .classification-buttons .btn { flex: 1; max-width: 250px; }
   
   #naturalBtn { background: var(--green); }
   #naturalBtn:hover { background: var(--green-dark); }
@@ -84,12 +81,12 @@
   .progress-bar{ flex:1; height:10px; background:#e6f2ff; border-radius:999px; overflow:hidden; margin: 0 1rem; }
   .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg, var(--orange) 0%, var(--orange-700) 100%); transition:width .3s ease; }
   .score-label{ font-weight:900; color:var(--blue-700); font-size:clamp(.9rem,2.3vw,1.1rem); }
-  .stage-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 0.5rem; width: 100%; } /* Menos padding lateral */
+  .stage-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 0.5rem; width: 100%; }
   
   /* Imagen más grande y con sombra */
   .image-box { 
     width: 100%; 
-    max-width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 100%; 
     height: auto; 
     min-height: 300px; 
     margin: 0 auto; 
@@ -103,11 +100,10 @@
   }
   .animal-image { 
     max-width: 100%; 
-    max-height: 450px; /* Altura máxima aumentada */
+    max-height: 450px; 
     height: auto; 
     object-fit: contain; 
     border-radius: 0;
-    /* Sombra para imágenes transparentes */
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25)); 
   }
 
@@ -159,13 +155,74 @@
   .hall-of-fame-error, .hall-of-fame-loading { padding: 1rem; text-align: center; color: var(--blue-700); font-style: italic; }
   .hall-of-fame-error { color: var(--red); }
 
-  /* Modal */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
-  .modal-content { background: #fff; border-radius: 16px; max-width: 400px; width: 100%; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,.3); text-align: center; }
-  .modal-title { color: var(--blue-dark); font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem; }
-  .modal-input { width: 100%; padding: 0.6rem; margin-bottom: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
-  .modal-input:focus { border-color: var(--blue-600); outline: none; }
-  .modal-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
+  /* --- ESTILOS DEL MODAL DE ENVÍO (AJUSTADO MÓVIL) --- */
+  .modal-overlay { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.8); 
+    z-index: 200; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 1rem; 
+  }
+  
+  .modal-content { 
+    background: #ffffff; 
+    border-radius: 16px; 
+    max-width: 400px; 
+    width: calc(100% - 2rem); /* AJUSTE: Más estrecho en móvil para ver fondo */
+    padding: 2rem; 
+    box-shadow: 0 10px 30px rgba(0,0,0,.3); 
+    text-align: center; 
+  }
+  
+  .modal-title { 
+    color: var(--blue-dark); 
+    font-weight: 900; 
+    font-size: 1.5rem; 
+    margin-bottom: 1rem; 
+  }
+  
+  .modal-input { 
+    width: 100%; 
+    padding: 10px; 
+    margin: 10px 0; 
+    border: 2px solid #ddd; 
+    border-radius: 8px; 
+    font-size: 1rem; 
+    transition: border-color 0.2s; 
+  }
+  
+  .modal-input:focus { 
+    border-color: var(--blue-600); 
+    outline: none; 
+  }
+  
+  .modal-buttons { 
+    display: flex; 
+    gap: 1rem; 
+    justify-content: center; 
+    margin-top: 1rem; 
+  }
+
+  /* --- MEDIA QUERIES PARA RESPONSIVE --- */
+  @media (min-width: 501px) {
+      /* PC: Más espacio entre imagen y botones para evitar la sombra */
+      .classification-buttons {
+          margin-top: 2.5rem;
+      }
+  }
+
+  @media (max-width: 500px) {
+      /* Móvil: Menos espacio entre imagen y botones */
+      .classification-buttons { 
+          flex-wrap: nowrap; 
+          gap: 0.8rem; 
+          margin-top: 1rem; /* Reducido */
+      }
+      .image-box { max-width: 300px; height: 300px; }
+  }
 </style>
 </head>
 <body>
@@ -212,7 +269,6 @@
     <div class="stage-content">
         <div class="image-box" id="imageBox"><img class="animal-image" id="animalImage" src="" alt="Paisaje"></div>
         <div class="classification-buttons">
-            <!-- Botones sin emojis y con igual tamaño -->
             <button class="btn" id="naturalBtn" data-type="Natural">Natural</button>
             <button class="btn" id="humanizadoBtn" data-type="Humanizado">Humanizado</button>
         </div>
@@ -250,7 +306,7 @@
     <p>Tu puntuación: <strong id="modalScore">0</strong> puntos</p>
     <p>Tiempo: <strong id="modalTime">00:00</strong></p>
     <hr style="margin: 1rem 0; border: 0; border-top: 1px solid #eee;">
-    <p style="margin-bottom: 0.5rem;">Introduce tu nombre:</p>
+    <p style="margin-bottom: 0.5rem;">Introduce tu nombre para guardar:</p>
     <input type="text" id="playerName" class="modal-input" placeholder="Nombre" maxlength="15">
     <input type="text" id="playerSurname" class="modal-input" placeholder="Apellido" maxlength="15">
     <div class="modal-buttons">
@@ -431,7 +487,7 @@ function loadQuestion() {
 
 function onClassificationClick(selectedType) {
   if (!isGameActive) return;
-  trackUserInteraction(true);
+  trackUserInteraction(true); 
 
   isGameActive = false;
   el('naturalBtn').disabled = true;
@@ -488,7 +544,7 @@ function gotoStart() {
   loadHallOfFame();
 }
 
-/************** Hall of Fame (LÓGICA FINAL) **************/
+/************** Hall of Fame **************/
 let isHofLoading = false;
 
 function loadHallOfFame() {
@@ -504,7 +560,6 @@ function loadHallOfFame() {
     .then(r => r.json())
     .then(data => {
       if (data.status === 'success' && data.data) {
-        
         const processedData = data.data.map(row => {
           const getVal = (keys) => {
             for(let key of keys) {
@@ -582,9 +637,6 @@ let currentSubmission = { score: 0, time: 0 };
 
 function showSubmitModal(score, timeTenths) {
   currentSubmission.score = score;
-  // *** CORRECCIÓN DE LOCALIZACIÓN ***
-  // Guardamos el tiempo como NUMBER (float). 
-  // Google Sheets detectará el tipo numérico y lo mostrará con coma (21,3) según tu configuración regional.
   currentSubmission.time = timeTenths / 10; 
   
   el('modalScore').textContent = score;
@@ -599,13 +651,20 @@ function showSubmitModal(score, timeTenths) {
 
 function hideSubmitModal() { el('submitModal').style.display = 'none'; }
 
-function submitScore() {
-  const name = el('playerName').value.trim();
-  const surname = el('playerSurname').value.trim();
-  if (!name || !surname) { alert('Rellena nombre y apellido'); return; }
+function handleSubmitScore() {
+  const nameInput = el('playerName');
+  const surnameInput = el('playerSurname');
   
+  const name = nameInput.value.trim();
+  const surname = surnameInput.value.trim();
+
+  if (!name || !surname) {
+    alert("Por favor, rellena nombre y apellido");
+    return;
+  }
+
   const btn = el('submitScoreBtn');
-  btn.textContent = 'Enviando...';
+  btn.textContent = "Enviando...";
   btn.disabled = true;
 
   fetch(APP_SCRIPT_URL, {
@@ -614,8 +673,18 @@ function submitScore() {
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({ sheet: SHEET_NAME, action: 'write', data: { score: currentSubmission.score, time: currentSubmission.time, name, surname } })
   })
-  .then(() => { setTimeout(() => { hideSubmitModal(); gotoStart(); }, 1000); })
-  .catch(err => { console.error(err); alert('Error al guardar'); btn.textContent = 'Guardar'; btn.disabled = false; });
+  .then(() => { 
+    setTimeout(() => { 
+      hideSubmitModal(); 
+      gotoStart(); 
+    }, 1500); 
+  })
+  .catch(err => { 
+    console.error(err); 
+    alert('Error al guardar'); 
+    btn.textContent = 'Guardar'; 
+    btn.disabled = false; 
+  });
 }
 
 function spawnConfetti() {
@@ -658,9 +727,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   el('closeHelp').addEventListener('click', () => { trackUserInteraction(true); el('helpModal').style.display='none'; });
   el('helpModal').addEventListener('click', (e) => { if (e.target === el('helpModal')) el('helpModal').style.display = 'none'; });
 
-  el('playerName').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el('playerSurname').focus(); } });
-  el('playerSurname').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submitScore(); } });
-  el('submitScoreBtn').addEventListener('click', () => { trackUserInteraction(true); submitScore(); });
+  el('playerName').addEventListener('keydown', (e) => { 
+    if (e.key === 'Enter') { 
+      e.preventDefault(); 
+      el('playerSurname').focus(); 
+    } 
+  });
+  
+  el('playerSurname').addEventListener('keydown', (e) => { 
+    if (e.key === 'Enter') { 
+      e.preventDefault(); 
+      handleSubmitScore(); 
+    } 
+  });
+
+  el('submitScoreBtn').addEventListener('click', () => { trackUserInteraction(true); handleSubmitScore(); });
   el('discardScoreBtn').addEventListener('click', () => { trackUserInteraction(true); hideSubmitModal(); });
 
   loadHallOfFame();
