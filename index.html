@@ -9,19 +9,12 @@
   /* ====== Reset & base ====== */
   * { box-sizing: border-box; margin:0; padding:0; }
   :root{
-    --blue:#001DFF;
-    --blue-dark:#04032B;
-    --blue-700:#1a3a5f;
-    --blue-600:#254fba;
-    --orange:#f59e42;
-    --orange-700:#e67e22;
-    --bg-grad-1:#1a3a5f;
-    --bg-grad-2:#0d2340;
+    --blue:#001DFF; --blue-dark:#04032B; --blue-700:#1a3a5f; --blue-600:#254fba;
+    --orange:#f59e42; --orange-700:#e67e22;
+    --bg-grad-1:#1a3a5f; --bg-grad-2:#0d2340;
     --white:#ffffff;
-    --green:#2ecc71;
-    --green-dark:#27ae60;
-    --red:#e74c3c;
-    --red-dark:#c0392b;
+    --green:#2ecc71; --green-dark:#27ae60;
+    --red:#e74c3c; --red-dark:#c0392b;
     --panel:#E8EAFF;
   }
   body{
@@ -32,12 +25,8 @@
   }
   .game-container{
     background:var(--white); border-radius:16px; box-shadow:0 12px 24px rgba(0,0,0,.12);
-    padding:1.2rem; 
-    max-width:950px; 
-    width:100%; 
-    min-height:750px; 
-    position:relative; overflow:hidden;
-    display:flex; flex-direction:column;
+    padding:1.2rem; max-width:950px; width:100%; min-height:750px; 
+    position:relative; overflow:hidden; display:flex; flex-direction:column;
   }
   header{ text-align:center; margin-bottom:.8rem; margin-top:1rem; }
   h1{ color:var(--blue-dark); font-size:clamp(2rem,5.2vw,3.1rem); font-weight:900; letter-spacing:.5px; }
@@ -46,86 +35,83 @@
   .highlight-green{ color:var(--green); font-weight:800; }
   .highlight-red{ color:var(--red); font-weight:800; }
 
-  /* Botones generales */
+  /* Botones */
   .btn{ color:#fff; border:none; padding:.75rem 1.2rem; border-radius:10px; cursor:pointer; font-weight:800;
         transition:transform .08s ease, box-shadow .2s ease, background-color .25s ease; 
         display:inline-flex; align-items:center; justify-content:center; font-size: 1rem;
-        flex-shrink: 0; 
-        width: auto; 
+        flex-shrink: 0; width: auto; 
   }
   .btn:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(0,0,0,.12); }
-  .btn:active{ transform:translateY(0); }
   .btn-primary{ background:var(--orange); }
   .btn-primary:hover{ background:var(--orange-700); }
-  .btn-blue{ background:var(--blue-600); }
-  .btn-blue:hover{ background:var(--blue-dark); }
   .btn-ghost{ background:#e6f2ff; color:var(--blue-700); }
   .btn:disabled{ opacity:.6; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
 
-  /* Botones de clasificación */
-  .classification-buttons {
-    display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;
-    padding: 0 1rem;
+  /* Botones de clasificación (Igual tamaño, sin emojis) */
+  .classification-buttons { 
+    display: flex; 
+    gap: 1rem; 
+    justify-content: center; 
+    margin-top: 1.5rem; 
+    padding: 0 1rem; 
     width: 100%; 
   }
-  /* Cambio: Botones con ancho fijo e igual, sin emojis */
-  #naturalBtn, #humanizadoBtn {
-    background: var(--green);
-    min-width: 160px;
-    width: 160px; 
-    justify-content: center;
+  /* Flex: 1 hace que ocupen el mismo espacio */
+  .classification-buttons .btn { 
+    flex: 1; 
+    max-width: 250px; /* Tope máximo para que no sean gigantes en PC */
   }
+  
+  #naturalBtn { background: var(--green); }
   #naturalBtn:hover { background: var(--green-dark); }
   #humanizadoBtn { background: var(--red); }
   #humanizadoBtn:hover { background: var(--red-dark); }
 
-  .btn-icon { width: 32px; height: 32px; margin-left: 8px; object-fit: contain; }
-  
   .screen{ display:none; animation:fadeIn .35s ease; flex:1; }
   .screen.active{ display:flex; flex-direction:column; }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
 
-  /* Pantalla de Inicio */
+  /* Inicio */
   .start-content{ display:flex; flex-direction:column; justify-content:flex-start; align-items:center; flex:1; gap:1rem; padding:1rem; }
   .start-content > *:not(.hall-of-fame) { flex-shrink: 0; }
-  
   .advice-box{ background:var(--panel); border-left:4px solid var(--blue-700); padding:1rem 1.2rem; border-radius:12px;
                color:var(--blue-700); max-width:680px; text-align:center; font-size:clamp(1rem,3vw,1.15rem); }
-  
   .start-image{ max-width: 300px; width: 100%; margin: 0 auto; margin-top: 1rem; margin-bottom: 1rem; }
   
-  .advice-box .advice-text { display: block; }
-  .advice-box strong { display: block; margin-top: 0.5rem; text-align: center; font-size: 1.1em; }
-
-  /* Pantalla de Juego */
+  /* Juego */
   .game-info{ display:flex; gap:.6rem; align-items:center; justify-content:space-between; margin:.4rem 0 1rem; flex-wrap:wrap; }
-  .timer{ font-weight:900; color:var(--blue-700); font-size:clamp(.95rem,2.3vw,1.15rem); min-width: 70px; }
+  .timer{ font-weight:900; color:var(--blue-700); font-size:clamp(.95rem,2.3vw,1.15rem); }
   .progress-bar{ flex:1; height:10px; background:#e6f2ff; border-radius:999px; overflow:hidden; margin: 0 1rem; }
   .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg, var(--orange) 0%, var(--orange-700) 100%); transition:width .3s ease; }
   .score-label{ font-weight:900; color:var(--blue-700); font-size:clamp(.9rem,2.3vw,1.1rem); }
+  .stage-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 0.5rem; width: 100%; } /* Menos padding lateral */
   
-  .stage-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0; width: 100%; }
-  
-  /* Contenedor de imagen - AUMENTADO */
-  .image-box {
-      width: 100%; 
-      max-width: 700px; /* Aumentado de 450px */
-      height: 450px; /* Aumentado de 400px */
-      margin: 0 auto;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity .2s ease;
+  /* Imagen más grande y con sombra */
+  .image-box { 
+    width: 100%; 
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; 
+    min-height: 300px; 
+    margin: 0 auto; 
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: opacity .2s ease; 
   }
-  .animal-image {
-      max-width: 100%;
-      max-height: 100%; 
-      height: auto; object-fit: contain;
-      border-radius: 0;
+  .animal-image { 
+    max-width: 100%; 
+    max-height: 450px; /* Altura máxima aumentada */
+    height: auto; 
+    object-fit: contain; 
+    border-radius: 0;
+    /* Sombra para imágenes transparentes */
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25)); 
   }
 
-  /* Animación de "Sacudida" (Shake) */
+  /* Animaciones */
   @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -141,41 +127,28 @@
   }
   .shake-anim { animation: shake 0.5s; }
 
-  /* Botones UI */
+  /* UI */
   .mute-btn{ position:absolute; top:.8rem; left:.8rem; background:var(--orange); color:#fff; border:2px solid #fff; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; z-index:20; }
-  .mute-btn:hover{ background:var(--orange-700); }
   .help-btn{ position:absolute; top:.8rem; right:.8rem; width:38px; height:38px; border-radius:50%; border:none; background:#9c27b0; color:#fff; font-weight:800; cursor:pointer; z-index:20; }
 
-  /* Pantalla Final */
+  /* Final */
   .results{ display:flex; flex-direction:column; align-items:center; gap:.6rem; text-align:center; flex:1; justify-content:center; }
   .final-title{ color:var(--blue-dark); font-weight:900; }
   .big-score{ font-size:clamp(2.2rem,6vw,3.4rem); color:var(--blue-600); font-weight:900; margin-top: -0.2rem; }
-  .score-title{ font-size:1.0rem; color:var(--blue-700); margin-top:1rem; }
-  .final-time{ color:var(--blue-700); }
   .trophy{ font-size:clamp(4rem,10vw,6rem); margin:.2rem 0; color:var(--orange); animation:bounce 1s ease infinite; }
   @keyframes bounce { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-8px);} }
   .credit{ color:var(--blue-700); margin-top:1rem; }
   #finalMsg { font-size: clamp(1.6rem, 3.8vw, 2.4rem); font-weight: 800; color: var(--blue-700); margin-top: 0.6rem; }
   .school-logo { display: block; width: 160px; max-width: 40%; height: auto; margin-top: 0.8rem; border-radius: 8px; object-fit: contain; }
-  .school-logo:not([src]){ display:none; }
 
-  /* Loading & Confetti */
+  /* Loaders */
   .confetti{ position:fixed; width:10px; height:10px; border-radius:50%; animation: confetti-fall 3s linear forwards; z-index:999; }
   @keyframes confetti-fall{ 0%{ transform:translate(0, -20px) rotate(0); opacity:1;} 100%{ transform:translate(var(--tx), var(--ty)) rotate(360deg); opacity:0; } }
-  .loading-indicator {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7); display: none; justify-content: center;
-    align-items: center; z-index: 1000; flex-direction: column;
-  }
-  .loading-spinner {
-    width: 50px; height: 50px; border: 5px solid #f3f3f3;
-    border-top: 5px solid var(--orange); border-radius: 50%;
-    animation: spin 1s linear infinite; margin-bottom: 20px;
-  }
+  .loading-indicator { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 1000; flex-direction: column; }
+  .loading-spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--orange); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .loading-text { color: white; font-size: 1.2rem; text-align: center; }
 
-  /* --- ESTILOS DEL HALL OF FAME --- */
+  /* Hall of Fame */
   .hall-of-fame { background: var(--panel); border-radius: 12px; padding: 1rem; margin-top: auto; margin-bottom: 1rem; width: 100%; max-width: 600px; }
   .hall-of-fame-title { color: var(--blue-700); font-weight: 800; font-size: 1.2rem; text-align: center; margin-bottom: 0.8rem; }
   .hall-of-fame-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
@@ -186,35 +159,27 @@
   .hall-of-fame-error, .hall-of-fame-loading { padding: 1rem; text-align: center; color: var(--blue-700); font-style: italic; }
   .hall-of-fame-error { color: var(--red); }
 
-  /* --- ESTILOS DEL MODAL DE ENVÍO --- */
+  /* Modal */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
   .modal-content { background: #fff; border-radius: 16px; max-width: 400px; width: 100%; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,.3); text-align: center; }
   .modal-title { color: var(--blue-dark); font-weight: 900; font-size: 1.5rem; margin-bottom: 1rem; }
-  .modal-input { width: 100%; padding: 0.6rem; margin-bottom: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
+  .modal-input { width: 100%; padding: 0.6rem; margin-bottom: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
   .modal-input:focus { border-color: var(--blue-600); outline: none; }
   .modal-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
-
-  /* Responsive */
-  @media (max-width: 500px) {
-    .classification-buttons { flex-wrap: nowrap; gap: 0.8rem; }
-    .image-box { max-width: 320px; height: 320px; }
-    /* Ajuste botones en móvil */
-    #naturalBtn, #humanizadoBtn { width: 140px; min-width: 140px; }
-  }
 </style>
 </head>
 <body>
 <div class="game-container">
-  <button class="mute-btn" id="muteBtn" title="Silenciar/Activar sonido">🔊</button>
+  <button class="mute-btn" id="muteBtn" title="Silenciar">🔊</button>
   <button class="help-btn" id="helpBtn" title="Ayuda">?</button>
 
-  <section class="screen active" id="startScreen" aria-labelledby="title-start">
+  <section class="screen active" id="startScreen">
     <header>
-      <h1 id="title-start">¿Naturales o humanizados?</h1>
+      <h1>¿Naturales o humanizados?</h1>
       <div class="subtitle">Identifica estos paisajes son naturales o humanizados.</div>
     </header>
     <div class="start-content">
-      <div class="advice-box" role="note" aria-live="polite">
+      <div class="advice-box">
         <span class="advice-text">
             <span class="highlight-keyword">Recuerda</span>: Los paisajes <span class="highlight-keyword">naturales</span> son aquellos en los que no ha intervenido el ser humano, mientras que los paisajes <span class="highlight-keyword">humanizados</span> han sido modificados por el ser humano.
         </span>
@@ -224,21 +189,11 @@
       
       <img class="start-image" src="https://raw.githubusercontent.com/ManuelVS8/Efectos_audio/refs/heads/main/Ni%C3%B1os.png" alt="Niños aprendiendo">
 
-      <!-- HALL OF FAME CON TÍTULO CORREGIDO -->
       <div class="hall-of-fame" id="hallOfFame">
         <div class="hall-of-fame-title">🏆 Mejores puntuaciones 🏆</div>
         <table class="hall-of-fame-table">
-          <thead>
-            <tr>
-              <th>Posición</th>
-              <th>Nombre</th>
-              <th>Puntos</th>
-              <th>Tiempo</th>
-            </tr>
-          </thead>
-          <tbody id="hofTableBody">
-            <tr><td colspan="4" class="hall-of-fame-loading">Cargando...</td></tr>
-          </tbody>
+          <thead><tr><th>Posición</th><th>Nombre</th><th>Puntos</th><th>Tiempo</th></tr></thead>
+          <tbody id="hofTableBody"><tr><td colspan="4" class="hall-of-fame-loading">Cargando...</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -247,63 +202,45 @@
   <section class="screen" id="gameScreen">
     <header>
       <h1>¿Natural o humanizado?</h1>
-      <div class="subtitle">
-        Indica se estos paisajes son 
-        <span class="highlight-green">naturales</span> (creados por la naturaleza) o 
-        <span class="highlight-red">humanizados</span> (modificados por el ser humano).
-      </div>
+      <div class="subtitle">Indica se estos paisajes son <span class="highlight-green">naturales</span> o <span class="highlight-red">humanizados</span>.</div>
     </header>
     <div class="game-info">
-      <div class="timer" id="timer">00:00.0</div>
-      <div class="progress-bar" aria-label="Progreso"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="timer" id="timer">00:00</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       <div class="score-label">Correctas: <span id="correctCount">0</span></div>
     </div>
-
     <div class="stage-content">
-        <div class="image-box" id="imageBox">
-            <img class="animal-image" id="animalImage" src="" alt="Imagen de paisaje a clasificar">
-        </div>
-        
-        <!-- BOTONES SIN EMOJIS -->
+        <div class="image-box" id="imageBox"><img class="animal-image" id="animalImage" src="" alt="Paisaje"></div>
         <div class="classification-buttons">
-            <button class="btn" id="naturalBtn" data-type="Natural">
-                Natural
-            </button>
-            <button class="btn" id="humanizadoBtn" data-type="Humanizado">
-                Humanizado
-            </button>
+            <!-- Botones sin emojis y con igual tamaño -->
+            <button class="btn" id="naturalBtn" data-type="Natural">Natural</button>
+            <button class="btn" id="humanizadoBtn" data-type="Humanizado">Humanizado</button>
         </div>
     </div>
   </section>
 
   <section class="screen" id="resultsScreen">
-    <header>
-      <h1 class="final-title">Paisajes naturales y humanizados</h1>
-    </header>
+    <header><h1 class="final-title">Paisajes naturales y humanizados</h1></header>
     <div class="results">
-      <div id="trophyBox" style="display:none;">
-        <div class="trophy">🏆</div>
-      </div>
+      <div id="trophyBox" style="display:none;"><div class="trophy">🏆</div></div>
       <div class="score-title">Puntuación:</div>
       <div class="big-score" id="finalScore">0</div>
-      <div class="final-time">Tiempo: <span id="finalTime">00:00.0</span></div>
+      <div class="final-time">Tiempo: <span id="finalTime">00:00</span></div>
       <div id="finalMsg" class="subtitle"></div>
       <button class="btn btn-primary" id="backToMenuBtn">Volver al menú</button>
       <span class="credit">Creado por Manuel J. Ventura</span>
-      <img class="school-logo" src="https://raw.githubusercontent.com/ManuelVS8/Efectos_audio/refs/heads/main/Siurot.png" alt="Logo del colegio" />
+      <img class="school-logo" src="https://raw.githubusercontent.com/ManuelVS8/Efectos_audio/refs/heads/main/Siurot.png" alt="Logo" />
     </div>
   </section>
 </div>
 
 <div id="helpModal" class="modal-overlay">
   <div class="modal-content">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:.5rem; margin-bottom:.8rem;">
+    <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
       <h3 style="color:var(--blue-700);">Ayuda</h3>
-      <button class="btn-ghost" id="closeHelp" style="border-radius:8px; padding:.4rem .7rem; height:auto; min-width:auto;">Cerrar</button>
+      <button class="btn-ghost" id="closeHelp">Cerrar</button>
     </div>
-    <div style="line-height:1.55; color:#333; text-align: left;">
-      <p><strong>Pulsa el botón</strong> correspondiente para indicar si es un paisaje <span class="highlight-green">natural</span> o <span class="highlight-red">humanizado</span>.</p>
-    </div>
+    <p><strong>Pulsa el botón</strong> correspondiente para indicar si es un paisaje <span class="highlight-green">natural</span> o <span class="highlight-red">humanizado</span>.</p>
   </div>
 </div>
 
@@ -311,9 +248,9 @@
   <div class="modal-content">
     <div class="modal-title">¡Juego terminado!</div>
     <p>Tu puntuación: <strong id="modalScore">0</strong> puntos</p>
-    <p>Tiempo: <strong id="modalTime">00:00.0</strong></p>
+    <p>Tiempo: <strong id="modalTime">00:00</strong></p>
     <hr style="margin: 1rem 0; border: 0; border-top: 1px solid #eee;">
-    <p style="margin-bottom: 0.5rem;">Introduce tu nombre para guardar:</p>
+    <p style="margin-bottom: 0.5rem;">Introduce tu nombre:</p>
     <input type="text" id="playerName" class="modal-input" placeholder="Nombre" maxlength="15">
     <input type="text" id="playerSurname" class="modal-input" placeholder="Apellido" maxlength="15">
     <div class="modal-buttons">
@@ -325,17 +262,16 @@
 
 <div class="loading-indicator" id="loadingIndicator">
   <div class="loading-spinner"></div>
-  <div class="loading-text">Cargando audios y efectos...</div>
+  <div class="loading-text">Cargando...</div>
 </div>
 
 <script>
-/************** Configuración Global (CRÍTICO) **************/
+/************** Configuración Global **************/
 const SHEET_NAME = 'Natural_humanizado';
 const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAyHMXyc0aZafOMXQtfQ3YztUTDToN7D8jm62ESrLJwDEj_rdWfgryi7clcgW1ednZ/exec';
 
-/************** Data **************/
+/************** Datos **************/
 const LANDSCAPES_DATA = [
-  // Naturales
   { type: 'Natural', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/N1.png' },
   { type: 'Natural', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/N2.png' },
   { type: 'Natural', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/N3.png' },
@@ -343,8 +279,6 @@ const LANDSCAPES_DATA = [
   { type: 'Natural', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/N5.png' },
   { type: 'Natural', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/N6.png' },
   { type: 'Natural', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/N7.png' },
-  
-  // Humanizados
   { type: 'Humanizado', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/H1.png' },
   { type: 'Humanizado', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/H2.png' },
   { type: 'Humanizado', url: 'https://raw.githubusercontent.com/ManuelVS8/Audios-juegos-SCIENCE/refs/heads/main/Relieve_Paisaje/Natural_Humanizado/H3.png' },
@@ -355,9 +289,6 @@ const LANDSCAPES_DATA = [
 ];
 
 const TOTAL_QUESTIONS = LANDSCAPES_DATA.length; 
-const DELAY_AFTER_ANSWER = 200;
-
-// Enlaces de audio
 const GITHUB_EFFECTS_BASE = 'https://raw.githubusercontent.com/ManuelVS8/Efectos_audio/7b86808e254100aeaba6285b3e0b82650ae78055/';
 const soundFiles = {
   completed: GITHUB_EFFECTS_BASE + 'Completado.mp3',
@@ -367,473 +298,372 @@ const soundFiles = {
   tap:       'https://raw.githubusercontent.com/ManuelVS8/Efectos_audio/37b3eb2da9c15c04dfb71dfe1be60f088ea3cdfc/Tap.mp3'
 };
 
-/************** State & Variables **************/
+/************** Estado Global **************/
 let landscapesShuffled = [];
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let isGameActive = false;
-let timerInterval = null; 
+let timerInt = null; 
 let elapsedTenths = 0; 
 let isMuted = false;
 let audioUnlocked = false; 
-
 const sounds = {};
+
+/************** Helpers DOM y Sonido **************/
 const el = (id) => document.getElementById(id);
 
-const progressFill = el('progressFill');
-const timerEl = el('timer');
-const correctCountEl = el('correctCount');
-const animalImage = el('animalImage');
-const imageBox = el('imageBox');
-const naturalBtn = el('naturalBtn');
-const humanizadoBtn = el('humanizadoBtn');
-
-/************** Sound Functions **************/
 function preloadSounds() {
   return new Promise((resolve) => {
     let loadedCount = 0;
-    const totalToLoad = Object.keys(soundFiles).length;
-    if (totalToLoad === 0) { resolve(); return; }
-
-    Object.entries(soundFiles).forEach(([k, url])=>{
-      try {
-        const a = new Audio();
-        a.src = url;
-        a.preload = 'auto';
-        a.crossOrigin = 'anonymous'; 
-        
-        const checkCompletion = () => {
-           if (a.dataset.loaded) return; 
-           a.dataset.loaded = true;
-           loadedCount++;
-           if (loadedCount === totalToLoad) resolve();
-        };
-
-        a.addEventListener('canplaythrough', checkCompletion, { once: true });
-        a.addEventListener('loadedmetadata', checkCompletion, { once: true });
-        a.addEventListener('error', checkCompletion, { once: true });
-        a.load();
-        sounds[k] = a;
-        setTimeout(() => { if (!a.dataset.loaded) checkCompletion(); }, 3000);
-      } catch(e) {
-        loadedCount++;
-        if (loadedCount === totalToLoad) resolve();
-      }
+    const keys = Object.keys(soundFiles);
+    if (keys.length === 0) { resolve(); return; }
+    keys.forEach(k => {
+      const a = new Audio();
+      a.src = soundFiles[k];
+      a.preload = 'auto';
+      a.crossOrigin = 'anonymous';
+      a.addEventListener('canplaythrough', () => {
+        if (!a.dataset.loaded) { a.dataset.loaded = true; loadedCount++; if (loadedCount === keys.length) resolve(); }
+      }, { once: true });
+      a.addEventListener('error', () => { loadedCount++; if (loadedCount === keys.length) resolve(); }, { once: true });
+      a.load();
+      sounds[k] = a;
     });
   });
 }
 
 function preloadImages() {
-  LANDSCAPES_DATA.forEach(item => {
+  LANDSCAPES_DATA.forEach(landscape => {
     const img = new Image();
-    img.src = item.url;
+    img.src = landscape.url;
   });
 }
 
-function unlockAudio(){
+function unlockAudio() {
   if (audioUnlocked) return;
-  try{
-    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const o = ctx.createOscillator();
     const g = ctx.createGain();
-    o.connect(g);
-    g.connect(ctx.destination);
+    o.connect(g); g.connect(ctx.destination);
     g.gain.value = 0.0001;
-    o.start();
-    o.stop(ctx.currentTime + 0.02);
+    o.start(); o.stop(ctx.currentTime + 0.02);
     audioUnlocked = true;
-  } catch(e){ audioUnlocked = true; }
+  } catch (e) { audioUnlocked = true; }
 }
 
-function play(name){
-  if(isMuted) return;
+function play(name) {
+  if (isMuted) return;
   try {
     const a = new Audio(sounds[name].src);
     a.currentTime = 0;
-    const p = a.play();
-    if (p && p.catch) p.catch(() => {});
-  } catch(e) {}
+    a.play().catch(() => {});
+  } catch (e) {}
 }
-
-function reproducirSonidoCorrecto(){ play('correct'); }
-function reproducirSonidoError(){ play('error'); }
-function reproducirSonidoCompletado(){ play('completed'); }
-function reproducirSonidoVictoria(){ play('victory'); }
-function reproducirSonidoTap(){ play('tap'); }
 
 let userInteracted = false;
 function trackUserInteraction(isTap = false) {
-  if (!userInteracted) {
-    userInteracted = true;
-    unlockAudio();
-  }
-  if (isTap) reproducirSonidoTap();
+  if (!userInteracted) { userInteracted = true; unlockAudio(); }
+  if (isTap) play('tap');
 }
 
-/************** Game Logic Helpers **************/
-function fmtTime(totalTenths){ 
+function fmtTime(totalTenths) {
+  if (isNaN(totalTenths) || totalTenths == null) return "00:00.0";
   const totalSeconds = totalTenths / 10;
-  const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0'); 
+  const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
   const s = Math.floor(totalSeconds % 60).toString().padStart(2, '0');
   const d = Math.floor(totalTenths % 10);
-  return `${m}:${s}.${d}`; 
+  return `${m}:${s}.${d}`;
 }
 
-function startTimer(){ 
-  stopTimer(); 
-  elapsedTenths = 0;
-  timerEl.textContent = fmtTime(elapsedTenths); 
-  timerInterval = setInterval(()=>{
-    elapsedTenths++; 
-    timerEl.textContent = fmtTime(elapsedTenths); 
-  }, 100); 
-} 
-
-function stopTimer(){ 
-  if(timerInterval){
-    clearInterval(timerInterval); 
-    timerInterval = null;
+function shuffle(a) {
+  const arr = [...a];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  return arr;
 }
 
-function shuffle(a){ const arr=[...a]; for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
-
-function updateProgress(corrects = correctAnswers, total = TOTAL_QUESTIONS){ 
-  const progress = (currentQuestionIndex / total) * 100;
-  progressFill.style.width = progress + '%'; 
-  correctCountEl.textContent = corrects;
-}
-
-function calculateFinalScore(corrects){ return Math.round((corrects / TOTAL_QUESTIONS) * 100); }
-
-/************** Game Flow **************/
-function loadQuestion(){
-  if (currentQuestionIndex >= TOTAL_QUESTIONS) {
-    finishGame();
-    return;
-  }
-  
-  isGameActive = true;
-  naturalBtn.disabled = false;
-  humanizadoBtn.disabled = false;
-  imageBox.style.opacity = '1';
-  imageBox.classList.remove('shake-anim');
-
-  const landscape = landscapesShuffled[currentQuestionIndex];
-  animalImage.src = landscape.url;
-  animalImage.alt = `Paisaje para clasificar: ${landscape.type}`;
-  
-  updateProgress();
-}
-
-function onClassificationClick(selectedType){
-  if(!isGameActive) return;
-  trackUserInteraction(true); 
-
-  isGameActive = false;
-  naturalBtn.disabled = true;
-  humanizadoBtn.disabled = true;
-
-  const currentLandscape = landscapesShuffled[currentQuestionIndex];
-  const isCorrect = currentLandscape.type === selectedType;
-
-  if (isCorrect) {
-    reproducirSonidoCorrecto();
-    correctAnswers++;
-  } else {
-    reproducirSonidoError();
-    imageBox.classList.add('shake-anim');
-  }
-  
-  const clickedBtn = selectedType === 'Natural' ? naturalBtn : humanizadoBtn;
-  clickedBtn.style.transform = 'scale(1.05)';
-  
-  setTimeout(() => {
-    clickedBtn.style.transform = 'scale(1)';
-    imageBox.style.opacity = '0'; 
-    
-    currentQuestionIndex++;
-    updateProgress();
-
-    setTimeout(() => {
-      loadQuestion();
-    }, DELAY_AFTER_ANSWER); 
-  }, DELAY_AFTER_ANSWER);
-}
-
-function startGame(){
+/************** Lógica del Juego **************/
+function startGame() {
   el('startScreen').classList.remove('active');
   el('gameScreen').classList.add('active');
   
   landscapesShuffled = shuffle(LANDSCAPES_DATA);
   currentQuestionIndex = 0;
   correctAnswers = 0;
+  isGameActive = false;
   
-  timerEl.textContent = '00:00.0';
-  correctCountEl.textContent = '0';
+  el('timer').textContent = '00:00.0';
+  el('correctCount').textContent = '0';
   
-  startTimer();
+  clearInterval(timerInt);
+  elapsedTenths = 0;
+  timerInt = setInterval(() => {
+    elapsedTenths++;
+    el('timer').textContent = fmtTime(elapsedTenths);
+  }, 100);
+
   loadQuestion();
 }
 
-function finishGame(){ 
-  stopTimer(); 
-  isGameActive = false;
-  naturalBtn.disabled = true;
-  humanizadoBtn.disabled = true;
-
-  const finalScore = calculateFinalScore(correctAnswers);
+function loadQuestion() {
+  if (currentQuestionIndex >= TOTAL_QUESTIONS) {
+    finishGame();
+    return;
+  }
   
-  el('gameScreen').classList.remove('active'); 
+  isGameActive = true;
+  el('naturalBtn').disabled = false;
+  el('humanizadoBtn').disabled = false;
+  const imageBox = el('imageBox');
+  imageBox.style.opacity = '1';
+  imageBox.classList.remove('shake-anim');
+
+  const landscape = landscapesShuffled[currentQuestionIndex];
+  el('animalImage').src = landscape.url;
+  
+  const progress = (currentQuestionIndex / TOTAL_QUESTIONS) * 100;
+  el('progressFill').style.width = progress + '%';
+  el('correctCount').textContent = correctAnswers;
+}
+
+function onClassificationClick(selectedType) {
+  if (!isGameActive) return;
+  trackUserInteraction(true);
+
+  isGameActive = false;
+  el('naturalBtn').disabled = true;
+  el('humanizadoBtn').disabled = true;
+
+  const currentLandscape = landscapesShuffled[currentQuestionIndex];
+  const isCorrect = currentLandscape.type === selectedType;
+  const imageBox = el('imageBox');
+
+  if (isCorrect) {
+    play('correct');
+    correctAnswers++;
+  } else {
+    play('error');
+    imageBox.classList.add('shake-anim');
+  }
+
+  const clickedBtn = selectedType === 'Natural' ? el('naturalBtn') : el('humanizadoBtn');
+  clickedBtn.style.transform = 'scale(1.05)';
+
+  setTimeout(() => {
+    clickedBtn.style.transform = 'scale(1)';
+    imageBox.style.opacity = '0';
+    currentQuestionIndex++;
+    setTimeout(loadQuestion, 200);
+  }, 200);
+}
+
+function finishGame() {
+  clearInterval(timerInt);
+  isGameActive = false;
+  
+  const finalScore = Math.round((correctAnswers / TOTAL_QUESTIONS) * 100);
+  
+  el('gameScreen').classList.remove('active');
   el('resultsScreen').classList.add('active');
   
-  el('finalScore').textContent = finalScore; 
+  el('finalScore').textContent = finalScore;
   el('finalTime').textContent = fmtTime(elapsedTenths);
   
   const isPerfect = finalScore === 100;
   el('trophyBox').style.display = isPerfect ? 'block' : 'none';
-  const msg = isPerfect ? '¡Enhorabuena, puntuación máxima!' : '¡Buen trabajo! Sigue practicando';
-  el('finalMsg').textContent = msg;
+  el('finalMsg').textContent = isPerfect ? '¡Enhorabuena, puntuación máxima!' : '¡Buen trabajo! Sigue practicando';
   
-  if(isPerfect){ 
-    reproducirSonidoVictoria(); 
-    spawnConfetti(); 
-  } else { 
-    reproducirSonidoCompletado(); 
-  }
-  updateProgress(correctAnswers, TOTAL_QUESTIONS); 
+  if (isPerfect) { play('victory'); spawnConfetti(); } else { play('completed'); }
+  
+  showSubmitModal(finalScore, elapsedTenths);
+}
 
-  showSubmitModal(fmtTime(elapsedTenths), finalScore);
-} 
-
-function gotoStart(){
-  el('resultsScreen').classList.remove('active'); 
-  el('gameScreen').classList.remove('active'); 
+function gotoStart() {
+  el('resultsScreen').classList.remove('active');
+  el('gameScreen').classList.remove('active');
   el('startScreen').classList.add('active');
-  
-  landscapesShuffled = [];
-  currentQuestionIndex = 0;
-  correctAnswers = 0;
-  elapsedTenths = 0;
-  timerEl.textContent = '00:00.0';
-  progressFill.style.width = '0%';
-  correctCountEl.textContent = '0';
-  isGameActive = false;
-  
   loadHallOfFame();
 }
 
-/************** Efectos Visuales **************/
-function spawnConfetti(){
-  for(let i=0;i<120;i++){
-    setTimeout(()=>{
-      const c=document.createElement('div');
-      c.className='confetti';
-      const x=Math.random()*window.innerWidth;
-      const ty=window.innerHeight+20;
-      const tx=(Math.random()-.5)*160;
-      const colors=['#ff595e','#1982c4','#6a4c93','#ffca3a','#8ac926','#ff924c','#00c2ff'];
-      c.style.left=x+'px';
-      c.style.top='-10px';
-      c.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
-      const size=6+Math.random()*8;
-      c.style.width=size+'px';
-      c.style.height=size+'px';
-      c.style.setProperty('--tx', tx+'px');
-      c.style.setProperty('--ty', ty+'px');
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(), 3200);
-    }, i*18);
-  }
-}
-
-/************** Hall of Fame Logic **************/
+/************** Hall of Fame (LÓGICA FINAL) **************/
 let isHofLoading = false;
 
 function loadHallOfFame() {
   if (isHofLoading) return;
   isHofLoading = true;
-  
+
   const tbody = document.getElementById('hofTableBody');
-  tbody.innerHTML = '<tr><td colspan="4" class="hall-of-fame-loading">Cargando...</td></tr>';
+  tbody.innerHTML = '<tr><td colspan="4" class="hall-of-fame-loading">Cargando datos...</td></tr>';
 
-  const controller = new AbortController();
-  const signal = controller.signal;
-  const timeoutId = setTimeout(() => controller.abort(), 8000);
+  const url = `${APP_SCRIPT_URL}?action=read&sheet=${SHEET_NAME}`;
 
-  fetch(`${APP_SCRIPT_URL}?action=read&sheet=${SHEET_NAME}`, { signal })
+  fetch(url)
     .then(r => r.json())
     .then(data => {
-      clearTimeout(timeoutId);
-      isHofLoading = false;
-      if (data && data.status === 'success' && data.data) {
-        renderHallOfFame(data.data);
+      if (data.status === 'success' && data.data) {
+        
+        const processedData = data.data.map(row => {
+          const getVal = (keys) => {
+            for(let key of keys) {
+              if(row[key] !== undefined && row[key] !== "") return row[key];
+            }
+            return null;
+          };
+          return {
+            Nombre: getVal(["Nombre", "nombre", "name"]),
+            Apellidos: getVal(["Apellidos", "apellidos", "surname"]),
+            Puntuación: getVal(["Puntuación", "puntuación", "score"]),
+            Tiempo: getVal(["Tiempo", "time", "Tiempo (s)", "tiempo"])
+          };
+        });
+
+        const validData = processedData.filter(row => row.Puntuación !== null && !isNaN(parseFloat(row.Puntuación)));
+
+        if (validData.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" class="hall-of-fame-loading">¡Sé el primero en guardar tu puntuación!</td></tr>';
+        } else {
+          validData.sort((a, b) => {
+            const scoreA = parseFloat(a.Puntuación) || 0;
+            const scoreB = parseFloat(b.Puntuación) || 0;
+            if (scoreB !== scoreA) return scoreB - scoreA;
+            const timeA = parseFloat(a.Tiempo) || 9999;
+            const timeB = parseFloat(b.Tiempo) || 9999;
+            return timeA - timeB;
+          });
+
+          tbody.innerHTML = '';
+          const top10 = validData.slice(0, 10);
+
+          for (let i = 0; i < top10.length; i++) {
+            const item = top10[i];
+            const tr = document.createElement('tr');
+            const displayName = `${item.Nombre} ${item.Apellidos}`.trim();
+            
+            let timeStr = "00:00.0";
+            
+            if (item.Tiempo !== null && !isNaN(parseFloat(item.Tiempo))) {
+              const tVal = parseFloat(item.Tiempo);
+              const tm = Math.floor(tVal / 60).toString().padStart(2,'0');
+              const ts = Math.floor(tVal % 60).toString().padStart(2,'0');
+              const tms = Math.round((tVal % 1) * 10);
+              timeStr = `${tm}:${ts}.${tms}`;
+            }
+            
+            const points = item.Puntuación || 0;
+
+            tr.innerHTML = `
+              <td>${i + 1}º</td>
+              <td>${displayName}</td>
+              <td>${points}</td>
+              <td>${timeStr}</td>
+            `;
+            tbody.appendChild(tr);
+          }
+        }
+
       } else {
-        throw new Error(data.message || 'Formato de datos incorrecto');
+        tbody.innerHTML = '<tr><td colspan="4" class="hall-of-fame-error">Error de conexión.</td></tr>';
       }
     })
-    .catch(err => {
-      clearTimeout(timeoutId);
+    .catch(e => {
+      console.error("Error HoF:", e);
+      tbody.innerHTML = '<tr><td colspan="4" class="hall-of-fame-error">Error de conexión.</td></tr>';
+    })
+    .finally(() => {
       isHofLoading = false;
-      console.error('Error cargando HOF:', err);
-      let errorMsg = 'Error de conexión';
-      if(err.name === 'AbortError') errorMsg = 'Tiempo de espera agotado';
-      
-      tbody.innerHTML = `<tr><td colspan="4" class="hall-of-fame-error">No se pudieron cargar las puntuaciones.<br><small>${errorMsg}</small></td></tr>`;
     });
 }
 
-function renderHallOfFame(entries) {
-  const tbody = document.getElementById('hofTableBody');
-  tbody.innerHTML = '';
-  
-  if (!entries || entries.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4" class="hall-of-fame-loading">Aún no hay puntuaciones</td></tr>';
-    return;
-  }
-
-  entries.sort((a, b) => {
-    const scoreA = Number(a.Puntuacion || a.Puntuación || a[4] || 0);
-    const scoreB = Number(b.Puntuacion || b.Puntuación || b[4] || 0);
-    if (scoreB !== scoreA) return scoreB - scoreA; 
-
-    const timeA = parseFloat(a.Tiempo || a[3] || 9999);
-    const timeB = parseFloat(b.Tiempo || b[3] || 9999);
-    return timeA - timeB; 
-  });
-
-  const top10 = entries.slice(0, 10);
-
-  top10.forEach((entry, index) => {
-    const tr = document.createElement('tr');
-    const name = entry.Nombre || entry[1] || '-';
-    const surname = entry.Apellidos || entry[2] || '';
-    const timeVal = parseFloat(entry.Tiempo || entry[3] || 0);
-    const scoreVal = entry.Puntuacion || entry.Puntuación || entry[4] || '0';
-
-    const formattedTime = fmtTime(Math.round(timeVal * 10));
-
-    tr.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${name} ${surname}</td>
-      <td>${scoreVal}</td>
-      <td>${formattedTime}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-/************** Modal & Submission Logic **************/
+/************** Modal y Efectos **************/
 let currentSubmission = { score: 0, time: 0 };
 
-function showSubmitModal(timeStr, score) {
+function showSubmitModal(score, timeTenths) {
   currentSubmission.score = score;
-  // Guardamos el valor numérico decimal (ej: 21.3)
-  currentSubmission.time = (elapsedTenths / 10); 
-
-  document.getElementById('modalScore').textContent = score;
-  document.getElementById('modalTime').textContent = timeStr;
-  document.getElementById('playerName').value = '';
-  document.getElementById('playerSurname').value = '';
-  document.getElementById('submitModal').style.display = 'flex';
+  // *** CORRECCIÓN DE LOCALIZACIÓN ***
+  // Guardamos el tiempo como NUMBER (float). 
+  // Google Sheets detectará el tipo numérico y lo mostrará con coma (21,3) según tu configuración regional.
+  currentSubmission.time = timeTenths / 10; 
   
-  const btnSave = document.getElementById('submitScoreBtn');
-  btnSave.textContent = 'Guardar';
-  btnSave.disabled = false;
-  
-  setTimeout(() => document.getElementById('playerName').focus(), 100);
+  el('modalScore').textContent = score;
+  el('modalTime').textContent = fmtTime(timeTenths);
+  el('playerName').value = '';
+  el('playerSurname').value = '';
+  el('submitModal').style.display = 'flex';
+  el('submitScoreBtn').textContent = 'Guardar';
+  el('submitScoreBtn').disabled = false;
+  setTimeout(() => el('playerName').focus(), 100);
 }
 
-function hideSubmitModal() {
-  document.getElementById('submitModal').style.display = 'none';
-}
+function hideSubmitModal() { el('submitModal').style.display = 'none'; }
 
 function submitScore() {
-  const nameInput = document.getElementById('playerName');
-  const surnameInput = document.getElementById('playerSurname');
+  const name = el('playerName').value.trim();
+  const surname = el('playerSurname').value.trim();
+  if (!name || !surname) { alert('Rellena nombre y apellido'); return; }
   
-  const name = nameInput.value.trim();
-  const surname = surnameInput.value.trim();
-
-  if (!name || !surname) {
-    alert('Por favor, rellena nombre y apellido');
-    return;
-  }
-
-  const btn = document.getElementById('submitScoreBtn');
+  const btn = el('submitScoreBtn');
   btn.textContent = 'Enviando...';
   btn.disabled = true;
-
-  // *** CORRECCIÓN CRÍTICA: Conversión de punto a coma para Google Sheets en español ***
-  // Convertimos el número a string con punto decimal, y luego reemplazamos el punto por coma.
-  const timeString = currentSubmission.time.toFixed(1).replace('.', ','); 
-
-  const payload = {
-    score: currentSubmission.score,
-    time: timeString, // Enviamos "21,3" en lugar de 21.3
-    name: name,
-    surname: surname
-  };
 
   fetch(APP_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ sheet: SHEET_NAME, action: 'write', data: payload })
+    body: JSON.stringify({ sheet: SHEET_NAME, action: 'write', data: { score: currentSubmission.score, time: currentSubmission.time, name, surname } })
   })
-  .then(() => {
-    setTimeout(() => {
-      hideSubmitModal();
-      loadHallOfFame(); 
-    }, 1000);
-  })
-  .catch(err => {
-    console.error('Error enviando puntuación:', err);
-    alert('Hubo un error al guardar la puntuación. Revisa tu conexión.');
-    btn.textContent = 'Guardar';
-    btn.disabled = false;
-  });
+  .then(() => { setTimeout(() => { hideSubmitModal(); gotoStart(); }, 1000); })
+  .catch(err => { console.error(err); alert('Error al guardar'); btn.textContent = 'Guardar'; btn.disabled = false; });
 }
 
-/************** Event Listeners **************/
+function spawnConfetti() {
+  for (let i = 0; i < 120; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * window.innerWidth + 'px';
+      c.style.top = '-10px';
+      c.style.backgroundColor = ['#ff595e','#1982c4','#6a4c93','#ffca3a','#8ac926'][Math.floor(Math.random()*5)];
+      c.style.width = (6 + Math.random()*8) + 'px';
+      c.style.height = c.style.width;
+      c.style.setProperty('--tx', ((Math.random()-.5)*160) + 'px');
+      c.style.setProperty('--ty', (window.innerHeight+20) + 'px');
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 3200);
+    }, i * 18);
+  }
+}
+
+/************** Inicio **************/
 document.addEventListener('DOMContentLoaded', async () => {
-    const loadingIndicator = el('loadingIndicator');
-    loadingIndicator.style.display = 'flex';
-    loadingIndicator.querySelector('.loading-text').textContent = "Cargando audios y efectos...";
+  const loader = el('loadingIndicator');
+  loader.style.display = 'flex';
+  
+  await preloadSounds();
+  preloadImages();
+  
+  loader.style.display = 'none';
+  
+  document.addEventListener('click', () => trackUserInteraction(false), { once: false });
+  
+  el('playBtn').addEventListener('click', () => { trackUserInteraction(true); startGame(); });
+  el('backToMenuBtn').addEventListener('click', () => { trackUserInteraction(true); gotoStart(); });
+  el('naturalBtn').addEventListener('click', (e) => onClassificationClick(e.currentTarget.dataset.type));
+  el('humanizadoBtn').addEventListener('click', (e) => onClassificationClick(e.currentTarget.dataset.type));
+  
+  el('muteBtn').addEventListener('click', () => { trackUserInteraction(); isMuted = !isMuted; el('muteBtn').textContent = isMuted ? '🔇' : '🔊'; });
+  el('helpBtn').addEventListener('click', () => { trackUserInteraction(true); el('helpModal').style.display='flex'; });
+  el('closeHelp').addEventListener('click', () => { trackUserInteraction(true); el('helpModal').style.display='none'; });
+  el('helpModal').addEventListener('click', (e) => { if (e.target === el('helpModal')) el('helpModal').style.display = 'none'; });
 
-    await Promise.all([
-        preloadSounds(),
-        new Promise(resolve => setTimeout(resolve, 500))
-    ]);
-    
-    preloadImages();
+  el('playerName').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el('playerSurname').focus(); } });
+  el('playerSurname').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submitScore(); } });
+  el('submitScoreBtn').addEventListener('click', () => { trackUserInteraction(true); submitScore(); });
+  el('discardScoreBtn').addEventListener('click', () => { trackUserInteraction(true); hideSubmitModal(); });
 
-    loadingIndicator.style.display = 'none';
-
-    document.addEventListener('click', () => trackUserInteraction(false), { once: false });
-    document.addEventListener('touchstart', () => trackUserInteraction(false), { once: false });
-    document.addEventListener('keydown', () => trackUserInteraction(false), { once: false });
-
-    el('playBtn').addEventListener('click', (e)=>{ trackUserInteraction(true); startGame(); });
-    el('backToMenuBtn').addEventListener('click', ()=>{ trackUserInteraction(true); gotoStart(); });
-    naturalBtn.addEventListener('click', (e) => onClassificationClick(e.currentTarget.dataset.type));
-    humanizadoBtn.addEventListener('click', (e) => onClassificationClick(e.currentTarget.dataset.type));
-    
-    el('muteBtn').addEventListener('click', ()=>{ trackUserInteraction(false); isMuted = !isMuted; el('muteBtn').textContent = isMuted ? '🔇' : '🔊'; });
-    el('helpBtn').addEventListener('click', ()=>{ trackUserInteraction(true); el('helpModal').style.display='flex'; });
-    el('closeHelp').addEventListener('click', ()=>{ trackUserInteraction(true); el('helpModal').style.display='none'; });
-    el('helpModal').addEventListener('click', (e)=>{ if(e.target===el('helpModal')) el('helpModal').style.display='none'; });
-
-    const nameInput = document.getElementById('playerName');
-    const surnameInput = document.getElementById('playerSurname');
-
-    nameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); surnameInput.focus(); } });
-    surnameInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submitScore(); } });
-
-    document.getElementById('submitScoreBtn').addEventListener('click', () => { trackUserInteraction(true); submitScore(); });
-    document.getElementById('discardScoreBtn').addEventListener('click', () => { trackUserInteraction(true); hideSubmitModal(); });
-
-    loadHallOfFame();
+  loadHallOfFame();
 });
 </script>
 </body>
